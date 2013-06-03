@@ -13,3 +13,5 @@ class Article(Item):
     content = Field(output_processor=Join())
     date = Field(input_processor=MapCompose(remove_empty), output_processor=Join())
     location = Field(output_processor=TakeFirst())
+    author = Field()
+    keywords = Field()

@@ -27,5 +27,7 @@ class ArticleSpider(CrawlSpider):
         l.add_xpath("content", "//div[contains(@class,'article-text')]//p[contains(@class,'body')]")
         l.add_xpath("date", "//span[contains(@class,'dateline')]/text()")
         l.add_xpath("location", "//span[contains(@class,'dateline')]/span/text()")
+        l.add_xpath("keywords", "//div[@id='articleKeywords']/p/a/text()")
         l.add_value("link", response.url)
-        return l.load_item()    
+        l.add_value("author", 'Sainath')
+        return l.load_item()
