@@ -6,11 +6,14 @@ def remove_empty(str):
     stripped = str.strip()
     return stripped if stripped else None
 
+def strip(str):
+    return str.strip().strip('- ')
+
 
 class Article(Item):
-    title = Field()
+    title = Field(input_processor=MapCompose(strip))
     link = Field()
-    content = Field(output_processor=Join())
+    content = Field(input_processor=MapCompose(strip), output_processor=Join())
     date = Field(input_processor=MapCompose(remove_empty), output_processor=Join())
     location = Field(output_processor=TakeFirst())
     author = Field()
